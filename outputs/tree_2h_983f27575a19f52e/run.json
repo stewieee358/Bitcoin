@@ -1,0 +1,382 @@
+{
+  "config": {
+    "symbol": "BTCUSDT",
+    "market": "spot",
+    "interval": "2h",
+    "months": [
+      "2024-09",
+      "2024-10",
+      "2024-11",
+      "2024-12",
+      "2025-01",
+      "2025-02",
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12"
+    ],
+    "timeout_seconds": 30,
+    "retries": 2,
+    "update_hours": 24,
+    "feature_columns": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "return",
+      "quote_asset_volume",
+      "number_of_trades",
+      "taker_buy_base_asset_volume",
+      "taker_buy_quote_asset_volume",
+      "return_lag1",
+      "return_7d",
+      "ma_deviation",
+      "volatility",
+      "price_range",
+      "body_ratio",
+      "upper_shadow_ratio",
+      "lower_shadow_ratio",
+      "volume_change",
+      "relative_volume",
+      "taker_buy_ratio"
+    ],
+    "window_days": 90,
+    "models": {
+      "logistic": {
+        "C": 1.0,
+        "max_iter": 2000,
+        "solver": "lbfgs"
+      },
+      "knn": {
+        "n_neighbors": 5,
+        "weights": "uniform",
+        "p": 2,
+        "algorithm": "brute"
+      },
+      "rf": {
+        "n_estimators": 100,
+        "random_state": 42,
+        "n_jobs": 1,
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": 1.0,
+        "bootstrap": true
+      },
+      "logistic_pca": {
+        "C": 1.0,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "pca_n_components": 0.95
+      },
+      "knn_pca": {
+        "n_neighbors": 5,
+        "weights": "uniform",
+        "p": 2,
+        "algorithm": "brute",
+        "pca_n_components": 0.95
+      },
+      "dt": {
+        "max_depth": 4,
+        "min_samples_leaf": 20,
+        "random_state": 42
+      },
+      "ada": {
+        "n_estimators": 100,
+        "learning_rate": 0.1,
+        "base_max_depth": 1,
+        "base_min_samples_leaf": 10,
+        "random_state": 42
+      },
+      "gbm": {
+        "n_estimators": 100,
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "min_samples_leaf": 20,
+        "subsample": 1.0,
+        "random_state": 42
+      }
+    },
+    "parallel_days": 4,
+    "evaluation_start": "2025-01-01T00:00:00+00:00",
+    "evaluation_end": "2026-01-01T00:00:00+00:00",
+    "tree_study": {
+      "top_k": 5,
+      "validation_days": 30,
+      "permutation_repeats": 10,
+      "scoring": "balanced_accuracy",
+      "random_state": 42,
+      "min_fit_samples": 100,
+      "min_validation_samples": 100,
+      "nonpositive_policy": "all_features"
+    },
+    "source_interval": "2h",
+    "validation": "rolling",
+    "experiment_id": "ca37f2b2f50af7b1b0360e2f27abe5688fbea4bc61f7d49538aead482f2307e6",
+    "study_id": "983f27575a19f52e8afdf72221589e42fa9003d3cc2f6fa8f9e0ae6d4b409ee8",
+    "dependency_versions": {
+      "python": "3.14.7",
+      "pandas": "3.0.5",
+      "numpy": "2.5.2",
+      "scikit-learn": "1.9.0",
+      "requests": "2.34.2",
+      "matplotlib": "3.11.2",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "download_manifest": [
+    {
+      "month": "2024-09",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2024-09.zip",
+      "sha256": "2f88c35fa1537f78487624c0d98dc20a7c035a6432475da85b3a34835e0a955e",
+      "cached": true
+    },
+    {
+      "month": "2024-10",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2024-10.zip",
+      "sha256": "65d7131402d7ba2b3d7d21b9df5a429be3a3895b17e6c3bd06a2659d480f37df",
+      "cached": true
+    },
+    {
+      "month": "2024-11",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2024-11.zip",
+      "sha256": "30e1af992b39011a4ceb61604667697b6996dc3e7ff95f3f2c33beeb88bb25c3",
+      "cached": true
+    },
+    {
+      "month": "2024-12",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2024-12.zip",
+      "sha256": "c9b179b1f428facc9574bef29ed75d10804eaf24ac263145c114562944ad9820",
+      "cached": true
+    },
+    {
+      "month": "2025-01",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-01.zip",
+      "sha256": "ef21624f258dd7ca30b2ecf4b7babd3451a0f0fa9a84a89993518199d415ea38",
+      "cached": true
+    },
+    {
+      "month": "2025-02",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-02.zip",
+      "sha256": "acc32a504247e37ddaff9a8924ce19f0416384c707ceba1656a465ab85512317",
+      "cached": true
+    },
+    {
+      "month": "2025-03",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-03.zip",
+      "sha256": "7021f1cf20274ef19c6c60205a7717b9279a8bab300c1313d65aa4b3fc54bacf",
+      "cached": true
+    },
+    {
+      "month": "2025-04",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-04.zip",
+      "sha256": "2832c00b88bd19058c1fc484c22d691f381f002b5fd4a0024eb22d607f20bbf1",
+      "cached": true
+    },
+    {
+      "month": "2025-05",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-05.zip",
+      "sha256": "68b6fd4f72b59433ef191f0f5779a5a4434829089e15995deac31e76ac29dc61",
+      "cached": true
+    },
+    {
+      "month": "2025-06",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-06.zip",
+      "sha256": "bfcf387c3d416bd3311f36dfa125a958c48026d8fa7069ed4094daac736a4981",
+      "cached": true
+    },
+    {
+      "month": "2025-07",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-07.zip",
+      "sha256": "ce2cbf01ab42c0998b64d89b596d89fd31f16e7bdaf4fe619447cf2c7cc4e9bb",
+      "cached": true
+    },
+    {
+      "month": "2025-08",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-08.zip",
+      "sha256": "ed21d38392d486e2dadd8c0e286bf9764cf56d377d015031c6263f760370d93e",
+      "cached": true
+    },
+    {
+      "month": "2025-09",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-09.zip",
+      "sha256": "c324bc06988241a4f06df392e268e247ef28b696c4297aa61691d22e1d771b2d",
+      "cached": true
+    },
+    {
+      "month": "2025-10",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-10.zip",
+      "sha256": "be6e4a730315c75c1748a740353293bc577a5930a05008b66489a6977463337e",
+      "cached": true
+    },
+    {
+      "month": "2025-11",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-11.zip",
+      "sha256": "9426d1eefbc25deb389dd7327289691125ac39a2512b5141503a274d782f39ae",
+      "cached": true
+    },
+    {
+      "month": "2025-12",
+      "url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/2h/BTCUSDT-2h-2025-12.zip",
+      "sha256": "9714aec1a8c505dd413e5cd11297d718f94acaef59436543c792c9b7f917e40d",
+      "cached": true
+    }
+  ],
+  "data_audit": {
+    "symbol": "BTCUSDT",
+    "market": "spot",
+    "interval": "2h",
+    "price_unit": "USDT/BTC",
+    "volume_unit": "BTC",
+    "timezone": "UTC",
+    "requested_start": "2024-09-01T00:00:00+00:00",
+    "requested_end_exclusive": "2026-01-01T00:00:00+00:00",
+    "actual_start": "2024-09-01T00:00:00+00:00",
+    "actual_last_open": "2025-12-31T22:00:00+00:00",
+    "raw_rows": 5844,
+    "actual_rows": 5844,
+    "expected_rows": 5844,
+    "duplicate_rows": 0,
+    "invalid_rows": 0,
+    "missing_bars": 0,
+    "missing_intervals": [],
+    "valid_samples": 5759
+  },
+  "status": {
+    "status": "success",
+    "stage": "complete",
+    "n": 4379,
+    "n_updates": 365,
+    "models": {
+      "logistic": "trained",
+      "knn": "trained",
+      "rf": "trained",
+      "logistic_pca": "trained",
+      "knn_pca": "trained",
+      "dt": "trained",
+      "ada": "trained",
+      "gbm": "trained",
+      "dt_selected": "trained",
+      "ada_selected": "trained",
+      "gbm_selected": "trained"
+    },
+    "selection": "trained",
+    "selected_days": 356,
+    "fallback_days": 9
+  },
+  "selection_cache": {
+    "status": "success",
+    "identity": "e8ec5627abd2ec34f32eee418f6d8cc7d1f2772de853f6302d111fe054fd13e8",
+    "sha256": {
+      "selection_daily.csv": "cb22f0aea8519b3df7c3e082746b11ea22ef51db427fd3a88f69c24167775aa6",
+      "permutation_importance_daily.csv": "2ea99e2e32ee9b92e25c367db070b7d07f50248b592ad7b495e56ae309397ef4"
+    }
+  },
+  "model_cache": {
+    "logistic_e58fc910f75f0c6c": {
+      "status": "success",
+      "identity": "e58fc910f75f0c6cb1dd0b0d6c7acfc9519baf5ab55e4b8ad4824004bcd229b1",
+      "sha256": "5adf4d31944e1476bdc154eb966e9fb8cc8aa17675636c7a8e19a724f7436449",
+      "n": 4379,
+      "origin": "trained"
+    },
+    "knn_bb8935c1585ebb0d": {
+      "status": "success",
+      "identity": "bb8935c1585ebb0d5f8cfe49bf8358d2c22db0671f78fc7f93221249575ef21d",
+      "sha256": "d94cb8f124448bec931c63bfd52e3d6e49a9ea2e372ec1957e7edced868ab4c3",
+      "n": 4379,
+      "origin": "trained"
+    },
+    "rf_1f0fd320a96d406a": {
+      "status": "success",
+      "identity": "1f0fd320a96d406afbd9b2733613dd448d81869fe1b0901767a8f987763b93dc",
+      "sha256": "bc0b693e6ed0a44f7eedd19ffea9ee9686ce0b8e49443682b50fc0b22210ec90",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "8a06a7f283e9168f8923ce6295466d581359bb50cae27677b7bdc8065a39384b"
+    },
+    "logistic_pca_26a28baa51eac3d0": {
+      "status": "success",
+      "identity": "26a28baa51eac3d0866b00d6fe797f88b031aa66af62dc0823f04a9cfe4c3d96",
+      "sha256": "5149e2709501b2e1fdbf56b208d1fbc69680a82d23dc17d95a18f1b7bff6e979",
+      "n": 4379,
+      "origin": "trained"
+    },
+    "knn_pca_08adeb8abba504a4": {
+      "status": "success",
+      "identity": "08adeb8abba504a4c6b9f571c804f301c1975fb2632032a509fc4d25a64c2b22",
+      "sha256": "8cf52b16e7642ebbde5aa24308015e4744f9dd748a4be3580d5461fbdb03bb6a",
+      "n": 4379,
+      "origin": "trained"
+    },
+    "dt_abf66aeb1d4e67e6": {
+      "status": "success",
+      "identity": "abf66aeb1d4e67e6c2eb9dc4e7ea23b2cf3bf493e24d33e9582d272603b7485d",
+      "sha256": "65d7afcab59bf4f61d40d44f034f429ff2a16f5d392d97f3196e9b32a624492c",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "927e6b0346cf531b00625609acd2939d85b88758b43ba5ef6c97b55beacdef29"
+    },
+    "ada_b76ee080a79aee7d": {
+      "status": "success",
+      "identity": "b76ee080a79aee7dc709f1ebba63408919e7b5de1d689d6d6af5fdd2aa35c22e",
+      "sha256": "fe19d5df6c102a968724df3ee1fc46ad99012d3f7b45cfaf9776a2622d87da36",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "cbf3684dbcaa28a0823060f90f08985b9d5db4e31e8c3d41e666f9f2c5cc07eb"
+    },
+    "gbm_8da71732954d1ab8": {
+      "status": "success",
+      "identity": "8da71732954d1ab84218b8cf69cb8a066f7d3a4624efb759f5381a76dc0cda74",
+      "sha256": "2907ceaf8b278cea55a6759d095131e4cc083e29f565fd1c0b166d0831ceb096",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "f5ee41820e73023f135f1fad66ecaf0976145cb86da1e05c18d4e7b2c6a27829"
+    },
+    "dt_selected_4233eb9551cface6": {
+      "status": "success",
+      "identity": "4233eb9551cface650cf156fdcc99314810519b66162f9c82f0be17f4b74b641",
+      "sha256": "4bc928a9d28f9c69cd809654be0eda841ef0892c35cdf48a67f4497539c5bce9",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "5afb10024005570aea0cb199af60f52c2ed667d1ec8f12c515e37d344c438dea"
+    },
+    "ada_selected_cbf79e38fa8ca2d5": {
+      "status": "success",
+      "identity": "cbf79e38fa8ca2d5ed941cfecdc793527cc602bee5940276f03924d5890e2648",
+      "sha256": "d5e8121f641ba1018a77b46627ccce7ebe04503ae89d975f5b15267fe56d6696",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "17985b5b339c98bd7ae88ef1264706cecc50cdc52e0d5ba422f3a67aef4607b9"
+    },
+    "gbm_selected_dc348b30d8fecd27": {
+      "status": "success",
+      "identity": "dc348b30d8fecd27724f17ba1e5e04fa0bc85672067af48e49c815ac8e2ea54b",
+      "sha256": "e386311fbeb9bb88e8e05fa1c7b04b8dcee5cf908046183701c3ae0d87fe1db7",
+      "n": 4379,
+      "origin": "trained",
+      "importance_sha256": "6a4c4dfe81fb039f2b5b03c68793872fe0a9319b8df16ec0b916fe1e0c1d4121"
+    }
+  },
+  "active_model_cache": {
+    "logistic": "logistic_e58fc910f75f0c6c",
+    "knn": "knn_bb8935c1585ebb0d",
+    "rf": "rf_1f0fd320a96d406a",
+    "logistic_pca": "logistic_pca_26a28baa51eac3d0",
+    "knn_pca": "knn_pca_08adeb8abba504a4",
+    "dt": "dt_abf66aeb1d4e67e6",
+    "ada": "ada_b76ee080a79aee7d",
+    "gbm": "gbm_8da71732954d1ab8",
+    "dt_selected": "dt_selected_4233eb9551cface6",
+    "ada_selected": "ada_selected_cbf79e38fa8ca2d5",
+    "gbm_selected": "gbm_selected_dc348b30d8fecd27"
+  }
+}

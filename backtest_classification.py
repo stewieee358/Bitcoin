@@ -93,7 +93,11 @@ def main():
         np.testing.assert_array_equal(scheduled_positions(times_check[1:8],signals_check[1:8],2),np.zeros(7))
     equity = pred[['feature_time','target_time','actual_return']].copy()
     results = []
-    names = list(config['models'])+['buy_hold','cash']
+    # Tree-study metadata also records the selected variants.
+    names = list(document.get('active_model_cache') or config['models'])+['buy_hold','cash']
+    missing = [name for name in names if name not in ('buy_hold', 'cash') and name+'_class' not in pred]
+    if missing:
+        raise ValueError(f'Missing prediction columns: {missing}')
     for name in names:
         position = (np.ones(len(pred)) if name=='buy_hold' else np.zeros(len(pred)) if name=='cash' else pred[name+'_class'].to_numpy())
         if args.rebalance_hours and name not in ('buy_hold','cash'):
@@ -114,7 +118,7 @@ def main():
                     position='long BTC for class1, otherwise cash',shorting=False,leverage=1,
                     cash_interest=0,slippage=0,final_liquidation=True,start=pred.feature_time.iloc[0].isoformat(),
                     end=pred.target_time.iloc[-1].isoformat(),n=len(pred),interval=config['interval'],periods_per_day=periods_per_day,
-                    rebalance_hours=args.rebalance_hours,model_horizon_minutes=int(bar_step/pd.Timedelta(minutes=1)))
+                    rebalance_hours=args.rebalance_hours,model_horizon_minutes=int(bar_step/pd.Timedelta(minutes=1)),strategies=names)
     if out.is_relative_to(predictions_dir) and out != predictions_dir:
         backtests = read_run(predictions_dir).get('backtests', {})
         backtests[out.relative_to(predictions_dir).as_posix()] = {'config': settings}
@@ -138,7 +142,7 @@ def main():
     fig.savefig(out/'gross_equity.png',dpi=160)
     plt.close(fig)
     text = ['# 简易分类回测', '', f'范围：{settings["start"]} 至 {settings["end"]}，共{len(pred)}个连续{config["interval"]}收益区间。',
-            f'复用{len(config["models"])}个模型的已有分类预测；训练窗口{config["window_days"]}天，共享{len(config["feature_columns"])}个特征，没有根据回测修改参数。',
+            f'复用{len(names)-2}个模型/预测版本；训练窗口{config["window_days"]}天，共用相同评价行。候选特征{len(config["feature_columns"])}个，筛选版本使用当日历史筛选的特征；没有根据回测修改参数。',
             '预测上涨则100%持有BTC，非上涨则100%现金；现货、不做空、无杠杆，现金利息为0。',
             (f'仅在UTC每{args.rebalance_hours}小时边界读取当时信号，期间仓位保持不变，期末清仓例外。模型预测期限仍为下一根{config["interval"]}。' if args.rebalance_hours else '每根K线结束后读取该时刻信号，只有仓位变化才交易。'),
             '零收益在交易比较中对应现金；BTC自身价格表现对应buy_hold（买入持有）。',
@@ -155,6 +159,7 @@ def main():
              '这段历史已被多次查看和尝试，不是新的独立样本；分类准确率高不保证收益高，收益受涨跌幅及持仓时段影响。', '']
     (out/'summary.md').write_text('\n'.join(text),encoding='utf-8')
     print(metrics.to_string(index=False))
+    print(f'Completed backtest: {out}', flush=True)
 
 
 if __name__=='__main__':

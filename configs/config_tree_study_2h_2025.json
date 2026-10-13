@@ -1,0 +1,118 @@
+{
+  "symbol": "BTCUSDT",
+  "market": "spot",
+  "interval": "2h",
+  "months": [
+    "2024-09",
+    "2024-10",
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12"
+  ],
+  "timeout_seconds": 30,
+  "retries": 2,
+  "update_hours": 24,
+  "feature_columns": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "return",
+    "quote_asset_volume",
+    "number_of_trades",
+    "taker_buy_base_asset_volume",
+    "taker_buy_quote_asset_volume",
+    "return_lag1",
+    "return_7d",
+    "ma_deviation",
+    "volatility",
+    "price_range",
+    "body_ratio",
+    "upper_shadow_ratio",
+    "lower_shadow_ratio",
+    "volume_change",
+    "relative_volume",
+    "taker_buy_ratio"
+  ],
+  "window_days": 90,
+  "models": {
+    "logistic": {
+      "C": 1.0,
+      "max_iter": 2000,
+      "solver": "lbfgs"
+    },
+    "knn": {
+      "n_neighbors": 5,
+      "weights": "uniform",
+      "p": 2,
+      "algorithm": "brute"
+    },
+    "rf": {
+      "n_estimators": 100,
+      "random_state": 42,
+      "n_jobs": 1,
+      "max_depth": null,
+      "min_samples_leaf": 1,
+      "max_features": 1.0,
+      "bootstrap": true
+    },
+    "logistic_pca": {
+      "C": 1.0,
+      "max_iter": 2000,
+      "solver": "lbfgs",
+      "pca_n_components": 0.95
+    },
+    "knn_pca": {
+      "n_neighbors": 5,
+      "weights": "uniform",
+      "p": 2,
+      "algorithm": "brute",
+      "pca_n_components": 0.95
+    },
+    "dt": {
+      "max_depth": 4,
+      "min_samples_leaf": 20,
+      "random_state": 42
+    },
+    "ada": {
+      "n_estimators": 100,
+      "learning_rate": 0.1,
+      "base_max_depth": 1,
+      "base_min_samples_leaf": 10,
+      "random_state": 42
+    },
+    "gbm": {
+      "n_estimators": 100,
+      "learning_rate": 0.05,
+      "max_depth": 2,
+      "min_samples_leaf": 20,
+      "subsample": 1.0,
+      "random_state": 42
+    }
+  },
+  "parallel_days": 4,
+  "evaluation_start": "2025-01-01T00:00:00+00:00",
+  "evaluation_end": "2026-01-01T00:00:00+00:00",
+  "tree_study": {
+    "top_k": 5,
+    "validation_days": 30,
+    "permutation_repeats": 10,
+    "scoring": "balanced_accuracy",
+    "random_state": 42,
+    "min_fit_samples": 100,
+    "min_validation_samples": 100,
+    "nonpositive_policy": "all_features"
+  }
+}

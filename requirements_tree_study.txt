@@ -1,0 +1,5 @@
+-r requirements.txt
+# Additional numerical/runtime versions used for this extension's validation.
+scipy==1.14.1
+joblib==1.6.0
+threadpoolctl==3.7.0

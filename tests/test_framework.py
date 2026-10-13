@@ -251,7 +251,10 @@ class FrameworkChecks(unittest.TestCase):
                 fit.reset_mock()
                 with self.assertRaisesRegex(ValueError, 'different experiment'):
                     run_experiment(new_features, root, output_dir=out)
-                path = next((out/'models').glob('logistic_*/predictions.csv'))
+                # logistic_* also matches logistic_pca_*; corrupt the actual
+                # LogisticRegression cache, not an unrelated PCA variant.
+                path = next(p for p in (out/'models').glob('logistic_*/predictions.csv')
+                            if p.parent.name.rsplit('_', 1)[0] == 'logistic')
                 path.write_text(path.read_text()+'\n')
                 run_experiment(extended, root)
                 self.assertEqual(fit.call_count, 1)
